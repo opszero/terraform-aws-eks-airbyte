@@ -6,6 +6,6 @@ module "airbyte" {
   vpc_id         = "vpc-xxxxxxxxxx" # add vpc id here
   subnet_ids     = ["subnets-xxxxxxx", "subnets-xxxxxxxx"]
 
-  password   = "" #if add some passwor
+  password   = "" #if add some password
   allowed_ip = ["0.0.0.0/0"]
 }
