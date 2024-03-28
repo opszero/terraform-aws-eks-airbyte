@@ -1,0 +1,78 @@
+postgresql:
+    # -- Switch to enable or disable the PostgreSQL helm chart
+    enabled: false
+
+externalDatabase:
+  # -- Database host
+  host:
+  # -- non-root Username for Airbyte Database
+  user: postgres
+  # -- Database password
+  password:
+  # -- Name of an existing secret resource containing the DB password
+  existingSecret: ""
+  # -- Name of an existing secret key containing the DB password
+  existingSecretPasswordKey: ""
+  # -- Database name
+  database: airbyte
+webapp:
+  ingress:
+    # -- Set to true to enable ingress record generation
+    enabled: true
+    # -- Specifies ingressClassName for clusters >= 1.18+
+    className: "nginx"
+    # -- Ingress annotations done as key:value pairs
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-body-size: "128m"
+      nginx.ingress.kubernetes.io/auth-type: basic
+      # name of the secret that contains the user/password definitions
+      nginx.ingress.kubernetes.io/auth-secret: basic-auth
+      # message to display with an appropriate context why the authentication is required
+      nginx.ingress.kubernetes.io/auth-realm: 'Authentication Required'
+    hosts:
+     - host: "airbyte.opszero.com" #host
+       paths:
+       - path: /
+         pathType: ImplementationSpecific
+    # -- Custom ingress TLS configuration
+    tls:
+      - hosts:
+          - airbyte.opszero.com
+        secretName: airbyte-tls
+
+
+workload-api-server:
+  enabled: false
+
+
+
+airbyte-api-server:
+  enabled: true
+  ingress:
+    # -- Set to true to enable ingress record generation
+    enabled: true
+    # -- Specifies ingressClassName for clusters >= 1.18+
+    className: "nginx"
+    # -- Ingress annotations done as key:value pairs
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt
+      nginx.ingress.kubernetes.io/proxy-connect-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-send-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-read-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-next-upstream-timeout: "120"
+      nginx.ingress.kubernetes.io/proxy-body-size: "128m"
+    hosts:
+      - host: "airbyte-api.opszero.com"
+        paths:
+          - path: /
+            pathType: ImplementationSpecific
+    # -- Custom ingress TLS configuration
+    tls:
+      - hosts:
+          - airbyte-api.opszero.com
+        secretName: airbyte-api-tls

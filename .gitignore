@@ -1,0 +1,18 @@
+
+# For built boxes
+*.box
+aws-marketplace.json
+/auditkube.log
+/cluster_dir
+
+.terraform/
+**/*.pem
+**/*.auto.*
+**/*.tfstate.*
+**/*.tfstate
+
+.DS_Store
+*~
+
+.idea/
+.terraform.lock.hcl
