@@ -6,7 +6,7 @@ resource "random_password" "password" {
 }
 
 module "postgresql" {
-  source = "github.com/opszero/terraform-aws-rds?ref=v1.0.0"
+  source = "github.com/opszero/terraform-aws-rds?ref=v1.0.1"
   name   = var.name
   #networking
   allowed_ip          = var.allowed_ip
