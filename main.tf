@@ -6,15 +6,8 @@ resource "random_password" "password" {
 }
 
 module "postgresql" {
-  source = "github.com/opszero/terraform-aws-rds"
-
-  #lables
-  name        = var.name
-  environment = var.environment
-  managedby   = var.managedby
-  repository  = var.repository
-  label_order = var.label_order
-
+  source = "github.com/opszero/terraform-aws-rds?ref=v1.0.0"
+  name   = var.name
   #networking
   allowed_ip          = var.allowed_ip
   allowed_ports       = var.allowed_ports
@@ -23,7 +16,6 @@ module "postgresql" {
   publicly_accessible = var.publicly_accessible
 
   #storage
-  alias             = "alias/rds-psql"
   allocated_storage = var.allocated_storage
   storage_encrypted = true
   #backups
@@ -36,7 +28,7 @@ module "postgresql" {
 
   #database
   db_name        = var.db_name
-  username       = var.username
+  db_username    = var.username
   password       = var.password == "" ? join("", random_password.password.*.result) : var.password
   port           = "5432"
   instance_class = var.instance_class
@@ -66,13 +58,15 @@ resource "helm_release" "airbyte" {
   repository       = "https://airbytehq.github.io/helm-charts"
   version          = var.airbyte_version
   values           = [file("airbyte.yaml")]
-  set {
-    name  = "externalDatabase.host"
-    value = module.postgresql.db_instance_address
-  }
-  set {
-    name  = "externalDatabase.password"
-    value = var.password == "" ? join("", random_password.password.*.result) : var.password
-  }
+  set = [
+    {
+      name  = "externalDatabase.host"
+      value = module.postgresql.db_instance_address
+    },
+    {
+      name  = "externalDatabase.password"
+      value = var.password == "" ? join("", random_password.password.*.result) : var.password
+    }
+  ]
 
 }
