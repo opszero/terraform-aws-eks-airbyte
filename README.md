@@ -1,3 +1,52 @@
+# terraform-aws-eks-airbyte
+
+# Terraform AWS Cloud eks-airbyte Module
+
+## Table of Contents
+- [Introduction](#introduction)
+- [Usage](#usage)
+- [Examples](#Examples)
+- [Author](#Author)
+- [License](#license)
+- [Inputs](#inputs)
+- [Outputs](#outputs)
+
+## Introduction
+This Terraform module creates an AWS elasticache along with additional configuration options.
+
+## Usage
+To use this module, you can include it in your Terraform configuration. Here's an example of how to use it:
+
+## Examples:
+
+## Example: memcached
+
+```hcl
+module "airbyte" {
+  source         = "git::https://github.com/opszero/terraform-aws-eks-airbyte.git?ref=v1.0.0"
+  environment    = "prod"
+  instance_class = "db.t3.micro"
+  vpc_id         = "vpc-xxxxxxxxxx" # add vpc id here
+  subnet_ids     = ["subnets-xxxxxxx", "subnets-xxxxxxxx"]
+  password   = "" #if add some password
+  allowed_ip = ["0.0.0.0/0"]
+}
+```
+
+## Examples
+For detailed examples on how to use this module, please refer to the [examples](https://github.com/opszero/terraform-aws-eks-airbyte.git) directory within this repository.
+
+## Author
+Your Name Replace **MIT** and **[opszero](https://github.com/opszero/terraform-aws-eks-airbyte.git)** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
+
+## License
+This project is licensed under the **MIT** [License](https://github.com/opszero/terraform-aws-eks-airbyte.git) - see the LICENSE file for details.
+
+
+
+
+
+
 <!-- BEGIN_TF_DOCS -->
 
 ## Providers
@@ -5,7 +54,7 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_helm"></a> [helm](#provider\_helm) | n/a |
-| <a name="provider_random"></a> [random](#provider\_random) | >= 3.0, < 4.0 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.7.2 |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -33,7 +82,7 @@
 | Name | Type |
 |------|------|
 | [helm_release.airbyte](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
-| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/latest/docs/resources/password) | resource |
+| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.7.2/docs/resources/password) | resource |
 ## Outputs
 
 No outputs.

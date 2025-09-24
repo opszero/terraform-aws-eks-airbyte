@@ -43,7 +43,7 @@ module "postgresql" {
 
   #other
   apply_immediately   = true
-  deletion_protection = false
+  deletion_protection = true
 
   ssm_parameter_endpoint_enabled = false
 
