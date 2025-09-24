@@ -5,30 +5,6 @@ variable "name" {
   description = "Name  (e.g. `app` or `cluster`)."
 }
 
-variable "environment" {
-  type        = string
-  default     = "prod"
-  description = "Environment (e.g. `prod`, `dev`, `staging`)."
-}
-
-variable "managedby" {
-  type        = string
-  default     = "opsZero"
-  description = "ManagedBy, eg 'cypik'."
-}
-
-variable "repository" {
-  type        = string
-  default     = "https://github.com/opszero/terraform-aws-eks-airbyte.git"
-  description = "Terraform current module repo"
-}
-
-variable "label_order" {
-  type        = list(any)
-  default     = ["name", "environment", ]
-  description = "Label order, e.g. `name`,`environment`."
-}
-
 #networking
 variable "allowed_ip" {
   type        = list(any)
