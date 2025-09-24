@@ -19,7 +19,7 @@ To use this module, you can include it in your Terraform configuration. Here's a
 
 ## Examples:
 
-## Example: memcached
+## Example: eks-airbyte
 
 ```hcl
 module "airbyte" {
@@ -28,8 +28,8 @@ module "airbyte" {
   instance_class = "db.t3.micro"
   vpc_id         = "vpc-xxxxxxxxxx" # add vpc id here
   subnet_ids     = ["subnets-xxxxxxx", "subnets-xxxxxxxx"]
-  password   = "" #if add some password
-  allowed_ip = ["0.0.0.0/0"]
+  password       = "" #if add some password
+  allowed_ip     = ["0.0.0.0/0"]
 }
 ```
 
