@@ -48,8 +48,20 @@ resource "helm_release" "airbyte" {
   values = [file("airbyte.yaml")]
   set = [
     {
+      name  = "database.type"
+      value = "external"
+    },
+    {
+      name  = "database.database"
+      value = var.db_name
+    },
+    {
       name  = "database.host"
       value = module.postgresql.db_instance_address
+    },
+    {
+      name  = "database.user"
+      value = var.username
     },
     {
       name  = "database.password"
