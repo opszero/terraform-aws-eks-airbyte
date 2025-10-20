@@ -21,6 +21,7 @@ module "postgresql" {
   enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
   db_name                         = var.db_name
   db_username                     = var.username
+  manage_master_user_password     = false
   password                        = var.password == "" ? join("", random_password.password.*.result) : var.password
   port                            = "5432"
   instance_class                  = var.instance_class
