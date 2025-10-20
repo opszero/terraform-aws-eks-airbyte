@@ -48,23 +48,27 @@ resource "helm_release" "airbyte" {
   values = [file("airbyte.yaml")]
   set = [
     {
-      name  = "database.type"
+      name  = "global.database.type"
       value = "external"
     },
     {
-      name  = "database.database"
+      name  = "global.database.database"
       value = var.db_name
     },
     {
-      name  = "database.host"
+      name  = "global.database.host"
       value = module.postgresql.db_instance_address
     },
     {
-      name  = "database.user"
+      name  = "global.database.port"
+      value = 5432
+    },
+    {
+      name  = "global.database.user"
       value = var.username
     },
     {
-      name  = "database.password"
+      name  = "global.database.password"
       value = var.password == "" ? join("", random_password.password.*.result) : var.password
     }
   ]
