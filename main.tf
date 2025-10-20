@@ -45,14 +45,14 @@ resource "helm_release" "airbyte" {
   create_namespace = true
   repository       = "https://airbytehq.github.io/helm-charts"
   # version          = var.airbyte_version
-  values           = [file("airbyte.yaml")]
+  values = [file("airbyte.yaml")]
   set = [
     {
-      name  = "externalDatabase.host"
+      name  = "database.host"
       value = module.postgresql.db_instance_address
     },
     {
-      name  = "externalDatabase.password"
+      name  = "database.password"
       value = var.password == "" ? join("", random_password.password.*.result) : var.password
     }
   ]
