@@ -1,7 +1,5 @@
 # terraform-aws-eks-airbyte
 
-# Terraform AWS Cloud eks-airbyte Module
-
 ## Table of Contents
 - [Introduction](#introduction)
 - [Usage](#usage)
@@ -34,16 +32,6 @@ module "airbyte" {
 
 ## Examples
 For detailed examples on how to use this module, please refer to the [Examples](https://github.com/opszero/terraform-aws-eks-airbyte.git) directory within this repository.
-
-## Author
-Your Name Replace **MIT** and **opszero** with the appropriate license and your information. Feel free to expand this README with additional details or usage instructions as needed for your specific use case.
-
-## License
-This project is licensed under the **MIT** License - see the [LICENSE]("git::https://github.com/opszero/terraform-aws-eks-airbyte.git?ref=v1.0.1") file for details.
-
-
-
-
 
 
 <!-- BEGIN_TF_DOCS -->
