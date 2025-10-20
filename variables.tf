@@ -71,14 +71,14 @@ variable "password" {
 
 variable "instance_class" {
   type        = string
-  default     = null
+  default     = "db.t4g.micro"
   description = "The instance type of the RDS instance"
 }
 
 #airbye
 variable "namespace" {
   type        = string
-  default     = "tools"
+  default     = "airbyte"
   description = "namespace of airbyte   (e.g. `tools` or `prod`)."
 }
 
