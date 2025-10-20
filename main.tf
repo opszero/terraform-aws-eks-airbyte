@@ -43,7 +43,7 @@ resource "helm_release" "airbyte" {
   namespace        = var.namespace
   create_namespace = true
   repository       = "https://airbytehq.github.io/helm-charts"
-  version          = var.airbyte_version
+  # version          = var.airbyte_version
   values           = [file("airbyte.yaml")]
   set = [
     {
