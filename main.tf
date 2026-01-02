@@ -1,9 +1,9 @@
 # Password auto generate
-resource "random_password" "password" {
-  count   = var.password == "" ? 1 : 0
-  length  = 16
-  special = true
+resource "random_id" "password" {
+  count       = var.password == "" ? 1 : 0
+  byte_length = 20
 }
+
 
 module "postgresql" {
   source                          = "git::https://github.com/opszero/terraform-aws-rds.git?ref=update/airbite"
