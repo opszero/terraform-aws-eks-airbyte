@@ -69,7 +69,7 @@ resource "helm_release" "airbyte" {
     },
     {
       name  = "global.database.password"
-      value = var.password == "" ? join("", random_password.password.*.result) : var.password
+      value = var.password == "" ? random_id.password[0].hex : var.password
     }
   ]
 
