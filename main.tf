@@ -6,7 +6,7 @@ resource "random_password" "password" {
 }
 
 module "postgresql" {
-  source                          = "git::https://github.com/opszero/terraform-aws-rds.git?ref=v1.0.2"
+  source                          = "git::https://github.com/opszero/terraform-aws-rds.git?ref=update/tags"
   name                            = var.name
   allowed_ip                      = var.allowed_ip
   allowed_ports                   = var.allowed_ports
