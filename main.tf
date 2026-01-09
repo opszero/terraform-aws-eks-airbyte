@@ -34,6 +34,7 @@ module "postgresql" {
   apply_immediately               = true
   deletion_protection             = false
   ssm_parameter_endpoint_enabled  = false
+  storage_type                    = "gp2"
 
 }
 
