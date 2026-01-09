@@ -87,3 +87,9 @@ variable "airbyte_version" {
   default     = "0.50.21"
   description = "version of airbyte hemm chart."
 }
+
+variable "postgresql_name" {
+  type        = string
+  default     = "airbyte-prod-postgres"
+  description = "Name  (e.g. `app` or `cluster`)."
+}

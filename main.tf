@@ -7,7 +7,7 @@ resource "random_id" "password" {
 
 module "postgresql" {
   source                          = "git::https://github.com/opszero/terraform-aws-rds.git?ref=update/airbite"
-  name                            = var.name
+  name                            = var.postgresql_name
   allowed_ip                      = var.allowed_ip
   allowed_ports                   = var.allowed_ports
   vpc_id                          = var.vpc_id
@@ -22,17 +22,17 @@ module "postgresql" {
   db_name                         = var.db_name
   db_username                     = var.username
   manage_master_user_password     = false
-  password = var.password == "" ? random_id.password[0].hex : var.password
+  password                        = var.password == "" ? random_id.password[0].hex : var.password
   port                            = "5432"
   instance_class                  = var.instance_class
   engine                          = "postgres"
   engine_name                     = "postgres"
-  engine_version                  = "17.6"
+  engine_version                  = "14.17"
   family                          = "postgres17"
   major_engine_version            = "17"
   multi_az                        = false
   apply_immediately               = true
-  deletion_protection             = true
+  deletion_protection             = false
   ssm_parameter_endpoint_enabled  = false
 
 }
