@@ -40,8 +40,8 @@ For detailed examples on how to use this module, please refer to the [Examples](
 
 | Name | Version |
 |------|---------|
-| <a name="provider_helm"></a> [helm](#provider\_helm) | 3.1.1 |
-| <a name="provider_random"></a> [random](#provider\_random) | 3.8.1 |
+| <a name="provider_helm"></a> [helm](#provider\_helm) | 3.1.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | 3.9.0 |
 ## Inputs
 
 | Name | Description | Type | Default | Required |
@@ -64,8 +64,8 @@ For detailed examples on how to use this module, please refer to the [Examples](
 
 | Name | Type |
 |------|------|
-| [helm_release.airbyte](https://registry.terraform.io/providers/hashicorp/helm/3.1.1/docs/resources/release) | resource |
-| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.8.1/docs/resources/password) | resource |
+| [helm_release.airbyte](https://registry.terraform.io/providers/hashicorp/helm/3.1.2/docs/resources/release) | resource |
+| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.9.0/docs/resources/password) | resource |
 ## Outputs
 
 No outputs.
