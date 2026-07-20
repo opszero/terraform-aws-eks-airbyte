@@ -93,3 +93,21 @@ variable "postgresql_name" {
   default     = "airbyte-prod-postgres"
   description = "Name  (e.g. `app` or `cluster`)."
 }
+
+variable "engine_version" {
+  type        = string
+  default     = "14.17"
+  description = "The engine version to use for the RDS PostgreSQL instance."
+}
+
+variable "family" {
+  type        = string
+  default     = "postgres17"
+  description = "The DB parameter group family."
+}
+
+variable "major_engine_version" {
+  type        = string
+  default     = "17"
+  description = "The major engine version for the option group."
+}

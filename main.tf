@@ -27,9 +27,9 @@ module "postgresql" {
   instance_class                  = var.instance_class
   engine                          = "postgres"
   engine_name                     = "postgres"
-  engine_version                  = "14.17"
-  family                          = "postgres17"
-  major_engine_version            = "17"
+  engine_version                  = var.engine_version
+  family                          = var.family
+  major_engine_version            = var.major_engine_version
   multi_az                        = false
   apply_immediately               = true
   deletion_protection             = false
