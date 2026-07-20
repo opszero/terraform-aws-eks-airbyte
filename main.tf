@@ -73,5 +73,4 @@ resource "helm_release" "airbyte" {
       value = var.password == "" ? random_id.password[0].hex : var.password
     }
   ]
-
 }
