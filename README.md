@@ -52,10 +52,14 @@ For detailed examples on how to use this module, please refer to the [Examples](
 | <a name="input_allowed_ports"></a> [allowed\_ports](#input\_allowed\_ports) | List of allowed ingress ports | `list(any)` | <pre>[<br/>  5432<br/>]</pre> | no |
 | <a name="input_db_name"></a> [db\_name](#input\_db\_name) | The DB name to create. If omitted, no database is created initially | `string` | `"airbyte"` | no |
 | <a name="input_enabled_cloudwatch_logs_exports"></a> [enabled\_cloudwatch\_logs\_exports](#input\_enabled\_cloudwatch\_logs\_exports) | List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL), upgrade (PostgreSQL). | `list(string)` | <pre>[<br/>  "postgresql",<br/>  "upgrade"<br/>]</pre> | no |
+| <a name="input_engine_version"></a> [engine\_version](#input\_engine\_version) | The engine version to use for the RDS PostgreSQL instance. | `string` | `"18.3"` | no |
+| <a name="input_family"></a> [family](#input\_family) | The DB parameter group family. | `string` | `"postgres18"` | no |
 | <a name="input_instance_class"></a> [instance\_class](#input\_instance\_class) | The instance type of the RDS instance | `string` | `"db.t4g.micro"` | no |
+| <a name="input_major_engine_version"></a> [major\_engine\_version](#input\_major\_engine\_version) | The major engine version for the option group. | `string` | `"18"` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name  (e.g. `app` or `cluster`). | `string` | `"airbyte"` | no |
 | <a name="input_namespace"></a> [namespace](#input\_namespace) | namespace of airbyte   (e.g. `tools` or `prod`). | `string` | `"airbyte"` | no |
 | <a name="input_password"></a> [password](#input\_password) | Password for the master DB user. Note that this may show up in logs, and it will be stored in the state file | `string` | `""` | no |
+| <a name="input_postgresql_name"></a> [postgresql\_name](#input\_postgresql\_name) | Name  (e.g. `app` or `cluster`). | `string` | `"airbyte-prod-postgres"` | no |
 | <a name="input_publicly_accessible"></a> [publicly\_accessible](#input\_publicly\_accessible) | Bool to control if instance is publicly accessible | `bool` | `false` | no |
 | <a name="input_subnet_ids"></a> [subnet\_ids](#input\_subnet\_ids) | A list of VPC Subnet IDs to launch in. | `list(string)` | `[]` | no |
 | <a name="input_username"></a> [username](#input\_username) | Username for the master DB user | `string` | `"postgres"` | no |
@@ -65,7 +69,7 @@ For detailed examples on how to use this module, please refer to the [Examples](
 | Name | Type |
 |------|------|
 | [helm_release.airbyte](https://registry.terraform.io/providers/hashicorp/helm/3.2.0/docs/resources/release) | resource |
-| [random_password.password](https://registry.terraform.io/providers/hashicorp/random/3.9.0/docs/resources/password) | resource |
+| [random_id.password](https://registry.terraform.io/providers/hashicorp/random/3.9.0/docs/resources/id) | resource |
 ## Outputs
 
 No outputs.
