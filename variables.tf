@@ -87,3 +87,27 @@ variable "airbyte_version" {
   default     = "0.50.21"
   description = "version of airbyte hemm chart."
 }
+
+variable "postgresql_name" {
+  type        = string
+  default     = "airbyte-prod-postgres"
+  description = "Name  (e.g. `app` or `cluster`)."
+}
+
+variable "engine_version" {
+  type        = string
+  default     = "18.3"
+  description = "The engine version to use for the RDS PostgreSQL instance."
+}
+
+variable "family" {
+  type        = string
+  default     = "postgres18"
+  description = "The DB parameter group family."
+}
+
+variable "major_engine_version" {
+  type        = string
+  default     = "18"
+  description = "The major engine version for the option group."
+}
