@@ -1,13 +1,13 @@
 # Password auto generate
-resource "random_password" "password" {
-  count   = var.password == "" ? 1 : 0
-  length  = 16
-  special = true
+resource "random_id" "password" {
+  count       = var.password == "" ? 1 : 0
+  byte_length = 20
 }
 
+
 module "postgresql" {
-  source                          = "git::https://github.com/opszero/terraform-aws-rds.git?ref=v1.0.2"
-  name                            = var.name
+  source                          = "git::https://github.com/opszero/terraform-aws-rds.git?ref=update/airbite"
+  name                            = var.postgresql_name
   allowed_ip                      = var.allowed_ip
   allowed_ports                   = var.allowed_ports
   vpc_id                          = var.vpc_id
@@ -22,18 +22,19 @@ module "postgresql" {
   db_name                         = var.db_name
   db_username                     = var.username
   manage_master_user_password     = false
-  password                        = var.password == "" ? join("", random_password.password.*.result) : var.password
+  password                        = var.password == "" ? random_id.password[0].hex : var.password
   port                            = "5432"
   instance_class                  = var.instance_class
   engine                          = "postgres"
   engine_name                     = "postgres"
-  engine_version                  = "17.6"
-  family                          = "postgres17"
-  major_engine_version            = "17"
+  engine_version                  = var.engine_version
+  family                          = var.family
+  major_engine_version            = var.major_engine_version
   multi_az                        = false
   apply_immediately               = true
-  deletion_protection             = true
+  deletion_protection             = false
   ssm_parameter_endpoint_enabled  = false
+  storage_type                    = "gp2"
 
 }
 
@@ -44,7 +45,7 @@ resource "helm_release" "airbyte" {
   namespace        = var.namespace
   create_namespace = true
   repository       = "https://airbytehq.github.io/helm-charts"
-  # version          = var.airbyte_version
+  version          = var.airbyte_version
   values = [file("airbyte.yaml")]
   set = [
     {
@@ -69,8 +70,7 @@ resource "helm_release" "airbyte" {
     },
     {
       name  = "global.database.password"
-      value = var.password == "" ? join("", random_password.password.*.result) : var.password
+      value = var.password == "" ? random_id.password[0].hex : var.password
     }
   ]
-
 }
